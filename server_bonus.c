@@ -23,7 +23,7 @@ void	ft_handler(int signal, siginfo_t *info, void *context)
 	static unsigned char	c;
 
 	(void)context;
-	usleep(100);
+	usleep(200);
 	if (!g_bytes)
 		c = 0;
 	if (signal == SIGUSR2)
@@ -49,7 +49,7 @@ void	ft_handler(int signal, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	int	pid;
+	int					pid;
 	struct sigaction	sa;
 
 	pid = getpid();

@@ -37,7 +37,7 @@ void	ft_handler(int signal, siginfo_t *info, void *context)
 
 int	main(void)
 {
-	int	pid;
+	int					pid;
 	struct sigaction	sa;
 
 	pid = getpid();

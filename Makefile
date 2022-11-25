@@ -16,6 +16,12 @@ SERVER			=	server
 CLIENT_SRC		=	client.c
 SERVER_SRC		=	server.c
 
+BONUS_CLIENT	=	client_bonus
+BONUS_SERVER	=	server_bonus
+
+BONUS_CLIENT_SRC	=	client_bonus.c
+BONUS_SERVER_SRC	=	server_bonus.c
+
 Lib_DIR			=	includes/libft
 Lib				=	$(Lib_DIR)/libft.a
 Printf_DIR		=	includes/printf
@@ -36,13 +42,25 @@ $(CLIENT): $(CLIENT_SRC)
 $(SERVER): $(SERVER_SRC)
 	@$(CC) $(CFLAGS) $(SERVER_SRC) $(Lib) $(Printf) -o $(SERVER)
 
+bonus:
+	@$(MAKE) -sC $(Lib_DIR)
+	@$(MAKE) -sC $(Printf_DIR)
+	@$(MAKE) $(BONUS_CLIENT)
+	@$(MAKE) $(BONUS_SERVER)
+
+$(BONUS_CLIENT): $(BONUS_CLIENT_SRC)
+	@$(CC) $(CFLAGS) $(BONUS_CLIENT_SRC) $(Lib) $(Printf) -o $(BONUS_CLIENT)
+
+$(BONUS_SERVER): $(BONUS_SERVER_SRC)
+	@$(CC) $(CFLAGS) $(BONUS_SERVER_SRC) $(Lib) $(Printf) -o $(BONUS_SERVER)
+
 clean:
 	@$(MAKE) clean -sC $(Lib_DIR)
 	@$(MAKE) clean -sC $(Printf_DIR)
 
 fclean:
 	@$(MAKE) clean
-	@$(RM) $(CLIENT) $(SERVER)
+	@$(RM) $(CLIENT) $(SERVER) $(BONUS_CLIENT) $(BONUS_SERVER)
 
 re:
 	@$(MAKE) fclean

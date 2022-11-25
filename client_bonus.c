@@ -17,7 +17,6 @@
 #include "includes/libft/libft.h"
 #include "includes/printf/ft_printf.h"
 
-
 void	confirm_signal(int signal)
 {
 	static int	i = 0;
@@ -47,8 +46,8 @@ static void	sendchar(int pid, char c)
 			signal = SIGUSR2;
 		if (kill(pid, signal))
 			exit(-1);
-		usleep(200);
-		usleep(100);
+		pause();
+		usleep(50);
 		i++;
 		c <<= 1;
 	}
